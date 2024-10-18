@@ -22,3 +22,4 @@ build/
 
 # Ignore local environment variables
 .env
+src/main/resources/docs/devcenter-content-snapshot.2024-05-20.json

@@ -9,7 +9,6 @@ import com.hashicorp.cdktf.TerraformOutput;
 public class MainStack extends TerraformStack {
 
     private final Cluster mongoCluster;
-    private String mongoDbUri;
 
     public MainStack(final Construct scope, final String id) {
         super(scope, id);
@@ -26,25 +25,13 @@ public class MainStack extends TerraformStack {
                 .projectId(System.getenv("MONGODB_PROJECT_ID"))
                 .providerName("AWS")
                 .providerInstanceSizeName("M10")
-                .providerRegionName("US_EAST_1")
+                .providerRegionName("EU_WEST_1")
                 .diskSizeGb(10)
                 .build();
 
         // Output MongoDB URI after deployment
         TerraformOutput.Builder.create(this, "MongoDbUri")
-                .value(mongoCluster.getConnectionStrings().get(0).getStandardSrv())
+                .value(mongoCluster.getConnectionStrings())
                 .build();
-
-        // Store the URI in a field
-        this.mongoDbUri = mongoCluster.getConnectionStrings().get(0).getStandardSrv();
-    }
-
-    // Method to return the MongoDB URI
-    public String getMongoDbUri() {
-        return mongoDbUri;
-    }
-
-    public Cluster getMongoCluster() {
-        return mongoCluster;
     }
 }

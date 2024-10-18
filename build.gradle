@@ -29,7 +29,6 @@ dependencies {
 	implementation 'com.hashicorp:cdktf-provider-mongodbatlas:7.7.1'
     implementation "com.hashicorp:cdktf:0.20.8"
     implementation "software.constructs:constructs:10.3.0"
-    implementation 'org.mongodb:mongodb-driver-sync:5.2.0'
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.ai:spring-ai-mongodb-atlas-store-spring-boot-starter'
@@ -63,6 +62,16 @@ tasks.withType(JavaCompile) {
 
 tasks.withType(Javadoc) {
     options.encoding = "UTF-8"
+}
+
+task runCdktf(type: JavaExec) {
+    main = 'com.mycompany.app.CdktfMain'  // Specify the main class for CDKTF
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task runSpringBoot(type: JavaExec) {
+    main = 'com.mycompany.app.CdktfMongodbApplication'  // Specify the main class for Spring Boot
+    classpath = sourceSets.main.runtimeClasspath
 }
 
 test {

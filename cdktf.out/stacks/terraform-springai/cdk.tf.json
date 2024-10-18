@@ -13,7 +13,7 @@
   },
   "output": {
     "MongoDbUri": {
-      "value": "${mongodbatlas_cluster.MongoCluster.connection_strings[0].standard_srv}"
+      "value": "${mongodbatlas_cluster.MongoCluster.connection_strings}"
     }
   },
   "provider": {
@@ -38,7 +38,7 @@
         "project_id": "668d3cca72724268b1c8e7ff",
         "provider_instance_size_name": "M10",
         "provider_name": "AWS",
-        "provider_region_name": "US_EAST_1"
+        "provider_region_name": "EU_WEST_1"
       }
     }
   },
