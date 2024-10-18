@@ -1,0 +1,77 @@
+plugins {
+    id "application"
+    id "java-library"
+    id "maven-publish"
+    id 'org.springframework.boot' version '3.3.4'
+    id 'io.spring.dependency-management' version '1.1.6'
+}
+
+apply plugin : "java" 
+ext {
+   javaMainClass = "com.mycompany.app.Main"
+    springAiVersion = "1.0.0-M3"
+}
+
+application {
+    mainClassName = javaMainClass
+}
+
+repositories {
+    mavenLocal()
+    maven {
+        url = uri("https://repo.maven.apache.org/maven2/")
+    }
+    mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
+}
+
+dependencies {
+	implementation 'com.hashicorp:cdktf-provider-mongodbatlas:7.7.1'
+    implementation "com.hashicorp:cdktf:0.20.8"
+    implementation "software.constructs:constructs:10.3.0"
+    implementation 'org.mongodb:mongodb-driver-sync:5.2.0'
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.ai:spring-ai-mongodb-atlas-store-spring-boot-starter'
+    implementation 'org.springframework.ai:spring-ai-openai-spring-boot-starter'
+
+    implementation 'org.apache.httpcomponents.client5:httpclient5:5.2'
+
+    testImplementation "junit:junit:4.13.2"
+    testImplementation "org.junit.jupiter:junit-jupiter:5.8.0"
+}
+
+group = "com.mycompany.app"
+version = "0.1"
+description = "terraform-springai"
+java.sourceCompatibility = JavaVersion.VERSION_21  // updated to Java 21
+
+
+
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from(components.java)
+        }
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+tasks.withType(Javadoc) {
+    options.encoding = "UTF-8"
+}
+
+test {
+  useJUnit()
+  useJUnitPlatform()
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.ai:spring-ai-bom:${springAiVersion}"
+    }
+}

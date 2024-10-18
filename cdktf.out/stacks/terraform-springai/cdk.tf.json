@@ -1,0 +1,58 @@
+{
+  "//": {
+    "metadata": {
+      "backend": "local",
+      "stackName": "terraform-springai",
+      "version": "0.20.8"
+    },
+    "outputs": {
+      "terraform-springai": {
+        "MongoDbUri": "MongoDbUri"
+      }
+    }
+  },
+  "output": {
+    "MongoDbUri": {
+      "value": "${mongodbatlas_cluster.MongoCluster.connection_strings[0].standard_srv}"
+    }
+  },
+  "provider": {
+    "mongodbatlas": [
+      {
+        "private_key": "84c0f687-5cec-4a57-8216-9c182036099f",
+        "public_key": "qcyhtfxo"
+      }
+    ]
+  },
+  "resource": {
+    "mongodbatlas_cluster": {
+      "MongoCluster": {
+        "//": {
+          "metadata": {
+            "path": "terraform-springai/MongoCluster",
+            "uniqueId": "MongoCluster"
+          }
+        },
+        "disk_size_gb": 10,
+        "name": "myCluster",
+        "project_id": "668d3cca72724268b1c8e7ff",
+        "provider_instance_size_name": "M10",
+        "provider_name": "AWS",
+        "provider_region_name": "US_EAST_1"
+      }
+    }
+  },
+  "terraform": {
+    "backend": {
+      "local": {
+        "path": "/Users/tim.kelly/Documents/JavaProjects/terraform-springai/terraform.terraform-springai.tfstate"
+      }
+    },
+    "required_providers": {
+      "mongodbatlas": {
+        "source": "mongodb/mongodbatlas",
+        "version": "1.21.1"
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "stacks": {
+    "terraform-springai": {
+      "annotations": [
+      ],
+      "constructPath": "terraform-springai",
+      "dependencies": [
+      ],
+      "name": "terraform-springai",
+      "stackMetadataPath": "stacks/terraform-springai/metadata.json",
+      "synthesizedStackPath": "stacks/terraform-springai/cdk.tf.json",
+      "workingDirectory": "stacks/terraform-springai"
+    }
+  },
+  "version": "0.20.8"
+}
